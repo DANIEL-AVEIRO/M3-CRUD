@@ -1,0 +1,19 @@
+import React from 'react'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import ProductList from './pages/ProductList'
+import ProductCreate from './pages/ProductCreate'
+
+const App = () => {
+  return (
+    <BrowserRouter>
+      <div className='max-w-4xl mx-auto p-6'>
+        <Routes>
+          <Route path='/' element={<ProductList />} />
+          <Route path='/product/create/' element={<ProductCreate />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
+  )
+}
+
+export default App
