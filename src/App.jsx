@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ProductList from './pages/ProductList'
 import ProductCreate from './pages/ProductCreate'
+import { ToastContainer } from 'react-toastify'
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
           <Route path='/product/create/' element={<ProductCreate />} />
         </Routes>
       </div>
+      <ToastContainer />
     </BrowserRouter>
   )
 }
