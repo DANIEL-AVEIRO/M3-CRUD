@@ -5,7 +5,7 @@ const ProductList = () => {
 
     const [products, setProducts] = useState([])
 
-    const saveData = JSON.parse(localStorage.getItem("products"))
+    const saveData = JSON.parse(localStorage.getItem("products")) || []
     useEffect(() => {
         setProducts(saveData)
     }, [])
@@ -32,7 +32,7 @@ const ProductList = () => {
                                     <td className='p-4 border border-solid border-black text-center'>{product.name}</td>
                                     <td className='p-4 border border-solid border-black text-center'>{product.price}</td>
                                     <td className='p-4 border border-solid border-black text-center'>
-                                        <button className='px-6 py-4 inline-block text-white rounded-lg cursor-pointer bg-yellow-500'>Edit</button>
+                                        <Link to={`/product/update/${product.id}`} className='px-6 py-4 inline-block text-white rounded-lg cursor-pointer bg-yellow-500'>Edit</Link>
                                         <button className='px-6 py-4 inline-block text-white ms-4 rounded-lg cursor-pointer bg-red-500'>Delete</button>
                                     </td>
                                 </tr>
