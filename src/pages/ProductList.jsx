@@ -1,8 +1,14 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const ProductList = () => {
-    const products = JSON.parse(localStorage.getItem("products"))
+
+    const [products, setProducts] = useState([])
+
+    const saveData = JSON.parse(localStorage.getItem("products"))
+    useEffect(() => {
+        setProducts(saveData)
+    }, [])
 
     return (
         <div>
