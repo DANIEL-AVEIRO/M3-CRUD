@@ -24,6 +24,7 @@ const ProductCreate = () => {
         }
         products.push(newProduct)
         localStorage.setItem("products", JSON.stringify(products))
+        toast.success("Product is created successfully")
         navigate('/')
     }
 

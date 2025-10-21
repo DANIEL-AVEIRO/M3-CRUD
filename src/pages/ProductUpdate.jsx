@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 const ProductUpdate = () => {
     const { id } = useParams()
     const [name, setName] = useState("")
     const [price, setPrice] = useState("")
+    const navigate = useNavigate()
 
     const allProducts = JSON.parse(localStorage.getItem("products"))
 
@@ -18,8 +20,10 @@ const ProductUpdate = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        const updated = allProducts.map((product) => product.id == id ? { ...product, name, price } : allProducts)
+        const updated = allProducts.map((product) => product.id == id ? { ...product, name, price } : product)
         localStorage.setItem("products", JSON.stringify(updated))
+        toast.success("Product is updated successfully")
+        navigate('/')
     }
     return (
         <div className="mt-10">
