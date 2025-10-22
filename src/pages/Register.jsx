@@ -1,24 +1,36 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 const Register = () => {
     const [username, setUsername] = useState("")
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+    const navigate = useNavigate()
 
     const handleSubmit = (e) => {
         e.preventDefault()
 
         const users = JSON.parse(localStorage.getItem('users')) || []
-        const newUser = {
-            id: Date.now(),
-            username,
-            email,
-            password
+
+        const existingUser = users.find((user) => user.email === email)
+        if (!username || !email || !password) {
+            toast.error("All field are required")
         }
-        users.push(newUser)
-        localStorage.setItem("users", JSON.stringify(users))
-        toast.success("Registration successfully")
+        if (existingUser) {
+            toast.error("Email already exist")
+        } else {
+            const newUser = {
+                id: Date.now(),
+                username,
+                email,
+                password
+            }
+            users.push(newUser)
+            localStorage.setItem("users", JSON.stringify(users))
+            toast.success("Registration successfully")
+            navigate('/login/')
+        }
     }
     return (
         <div className="mt-10">
